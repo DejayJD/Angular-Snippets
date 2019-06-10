@@ -1,0 +1,35 @@
+@import '../../styles/ui-template-colors';
+
+:host /deep/ .ui-dialog {
+  display: block !important;
+  width: auto;
+  height: 1px;
+  min-width: 58vw !important;
+  min-height: 58vh;
+  border-radius: 0;
+  font-size: 13px;
+  font-family: "Source Sans Pro";
+}
+
+:host /deep/ .ui-dialog-content {
+  height: 78% !important;
+  display: flex;
+  > * {
+    margin: auto;
+  }
+}
+
+:host /deep/ .filter-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2.5vw !important;
+}
+
+:host /deep/ .dialog-label {
+  text-align: right;
+  padding-right: 5px;
+}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {
+  background: $header-gray;
+}

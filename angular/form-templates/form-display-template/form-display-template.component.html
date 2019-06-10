@@ -1,0 +1,16 @@
+<div class="d-flex flex-wrap">
+    <ng-container *ngFor="let col of viewableColumns">
+        <div class="half-row" *ngIf="!col.hideFromReadView">
+            <div class="col cell" [attr.name]="col.formControlName">
+                <label>{{col.displayHeader != null ? col.displayHeader :
+                    addSpaceBeforeCapitalLetters(col.formControlName)}}</label>
+                <div *ngIf="col.htmlInputType != 'checkbox'" id="{{col.formControlName}}">{{getDisplayData(col) |
+                    defaultNone}}
+                </div>
+                <div *ngIf="col.htmlInputType == 'checkbox'" id="{{col.formControlName}}">{{getDisplayData(col) |
+                    yesNoBoolean}}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,26 @@
+<div *ngIf="editForm.controls[formControlName].errors && (editForm.controls[formControlName].touched || editForm.controls[formControlName].dirty || showErrors)">
+    <div *ngIf="editForm.controls[formControlName].errors.required" class="alert alert-danger">
+        {{addSpaceBeforeCapitalLetters(formControlName)}} is required.
+    </div>
+    <div *ngIf="editForm.controls[formControlName].errors.rangeValue" class="alert alert-danger">
+        {{editForm.controls[formControlName].errors.rangeValue.validValuesErrorMsg}}
+    </div>
+    <div *ngIf="editForm.controls[formControlName].errors.maxlength" class="alert alert-danger">
+        The input must be less than {{editForm.controls[formControlName].errors.maxlength.requiredLength}}
+        characters long.
+    </div>
+    <div *ngIf="editForm.controls[formControlName].errors.minValue" class="alert alert-danger">
+        Value must be greater than {{editForm.controls[formControlName].errors.minValue.minVal}}
+    </div>
+    <div *ngIf="editForm.controls[formControlName].errors.invalidJiraTicket" class="alert alert-danger">
+        Invalid JIRA Ticket.
+    </div>
+    <div *ngIf="editForm.controls[formControlName].errors.pattern" class="alert
+  alert-danger">
+        Input must match the pattern {{editForm.controls[formControlName].errors.pattern.requiredPattern}}
+    </div>
+    <div *ngIf="editForm.controls[formControlName].errors.patternMessage" class="alert
+  alert-danger">
+        {{editForm.controls[formControlName].errors.patternMessage}}
+    </div>
+</div>

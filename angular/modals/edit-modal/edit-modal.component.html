@@ -1,0 +1,26 @@
+<p-dialog header="Details" [(visible)]="visible" [responsive]="true" showEffect="fade"
+          [modal]="true" (onHide)="closeModal()" *ngIf="visible">
+    <!--HEADER NOT HERE-->
+    <!--BODY-->
+    <div class="d-flex flex-column" style="width:100%">
+        <ng-content select="[modalBodyStart]"></ng-content>
+        <app-form-edit-template
+                style="width:100%"
+                [editForm]="editForm"
+                [showErrors]="showErrors"
+                [editableColumns]="editableColumns">
+        </app-form-edit-template>
+        <ng-content select="[modalBodyEnd]"></ng-content>
+    </div>
+    <!--FOOTER-->
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="action-button green-button opacity-hover" (click)="submit()">
+                Save <i class="fa fa-save"></i>
+            </button>
+            <button type="button" class="action-button blue-primary-button opacity-hover" (click)="closeModal()">
+                Cancel <i class="fa fa-cross"></i>
+            </button>
+        </div>
+    </p-footer>
+</p-dialog>

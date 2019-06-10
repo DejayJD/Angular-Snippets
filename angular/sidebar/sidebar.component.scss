@@ -1,0 +1,43 @@
+@import "../../styles/ui-template-colors";
+
+.opened-nav-ul {
+  padding: 0 5px;
+  margin-bottom: 1em;
+}
+
+.sidebar-nav-item-icon {
+  margin: 0 5px;
+  width: 17px;
+}
+
+.sidebar-nav-header {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: black;
+  padding-bottom: 8px;
+  padding-left: 10px;
+  padding-top: 2px;
+  border-bottom: solid 1px #e3e3e3;
+}
+
+.sidebar-nav-item {
+  list-style: none;
+  font-size: 10pt;
+  cursor: pointer;
+  padding: 7px 0;
+  border-bottom: solid 1px $lightgray;
+}
+
+.sidebar-nav {
+  color: #3a3a3a;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: auto;
+  border-right: solid 1px $lightgray;
+}
+
+.selected-nav-item {
+  background-color: $light-selected-blue;
+}

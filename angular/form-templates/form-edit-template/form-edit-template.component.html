@@ -1,0 +1,93 @@
+<ng-container *ngIf="editForm != null">
+    <form [formGroup]="editForm">
+        <ng-container *ngFor="let col of editableColumns">
+            <ng-container *ngIf="col.formArray != null">
+                <div formArrayName="Params"
+                     *ngFor="let formGroup of editForm.get(col.formControlName).controls; let i=index">
+                    <div [formGroupName]="i">
+                        <div class="ui-grid-row" style="width:100%" [class.hide]="col.hidden">
+                            <div class="ui-grid-col-4 dialog-label">
+                                <label>{{col.formArray[i].displayHeader != null ? col.formArray[i].displayHeader :
+                                    addSpaceBeforeCapitalLetters(col.formArray[i].formControlName)}}</label>
+                            </div>
+                            <div class="ui-grid-col-8" style="display:flex">
+                                <app-form-input-template
+                                        [formControlName]="col.formArray[i].formControlName"
+                                        [foreignKey]="col.formArray[i].foreignKey"
+                                        [htmlInputType]="col.formArray[i].htmlInputType"
+                                        [isDisabled]="col.formArray[i].disabled"
+                                        [field]="col.formArray[i].field"
+                                        [values]="col.formArray[i].values"
+                                        [formGroup]="formGroup"
+                                        ngDefaultControl
+                                >
+                                </app-form-input-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="ui-grid-row" style="width:100%" [class.hide]="col.hidden">
+                <hr *ngIf="col.headerStart">
+                <div class="ui-grid-col-4 dialog-label">
+                    <label *ngIf="!col.hideLabel">{{col.displayHeader != null ? col.displayHeader :
+                        addSpaceBeforeCapitalLetters(col.formControlName)}}</label>
+                </div>
+                <div class="ui-grid-col-8" style="display:flex">
+                    <app-form-input-template
+                            *ngIf="col.formArray == null"
+                            [formControlName]="col.formControlName"
+                            [foreignKey]="col.foreignKey"
+                            [htmlInputType]="col.htmlInputType"
+                            [isDisabled]="col.disabled"
+                            [field]="col.field"
+                            [values]="col.values"
+                            [formGroup]="editForm"
+                            ngDefaultControl>
+                    </app-form-input-template>
+
+                    <ng-container *ngIf="col.subForm">
+                        <app-icon-button
+                                (click)="addFormUsingButton(col)"
+                                [faIcon]="'fa-plus'"
+                                [buttonColor]="'green'"
+                                [buttonText]="'Add'"
+                        ></app-icon-button>
+                        <app-icon-button
+                                *ngIf="col.subForm.showCancelButton"
+                                (click)="hideForm(col)"
+                                [faIcon]="'fa-minus-circle'"
+                                [buttonColor]="'red'"
+                                [buttonText]="'Remove'"
+                        ></app-icon-button>
+
+                    </ng-container>
+                    <!--ERRORS-->
+                    <app-form-validation-errors
+                            [editForm]="editForm"
+                            [formControlName]="col.formControlName"
+                            [showErrors]="showErrors"
+                            ngDefaultControl
+                    >
+                    </app-form-validation-errors>
+                </div>
+            </div>
+            <ng-container *ngIf="col.subForm">
+                <ng-container *ngIf="col.subForm.optional">
+                </ng-container>
+                <ng-container *ngIf="col.subForm.formAdded">
+                    <hr>
+                    <dynamic-component-injector #componentLoader
+                                                [componentType]="col.subForm.component"
+                                                [subFormData]="col.subForm"
+                                                (onComponentOutput)="emitSubForm(col, $event)"
+                                                (onComponentInit)="catchComponentInit(col, $event)"
+                    >
+                    </dynamic-component-injector>
+                    <hr *ngIf="col.subForm.formType != 'child'">
+                </ng-container>
+            </ng-container>
+            <hr *ngIf="col.headerEnd">
+        </ng-container>
+    </form>
+</ng-container>

@@ -1,0 +1,9 @@
+<ng-container *ngIf="transitionStarted">
+  <ng-container *ngFor="let state of states; index as i">
+    <ng-container *ngIf="currentState == i">
+      <div [ngClass]="{fade:textFading}">
+        <i [ngClass]="state.icon" *ngIf="state.icon != null"></i> {{state.text}}
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,18 @@
+<p-dialog class="source-sans-pro" header="Are you sure you want to delete?" [(visible)]="visible"
+          *ngIf="visible"
+          [responsive]="true" (onHide)="closeModal()"
+          showEffect="fade" [modal]="true">
+    <p>
+        Are you sure you want to delete this entry? This action cannot be undone!
+    </p>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" class="action-button red-button opacity-hover" (click)="submitDelete()">
+                Delete <i class="fa fa-trash"></i>
+            </button>
+            <button type="button" class="action-button blue-primary-button opacity-hover" (click)="closeModal()">
+                Cancel <i class="fa fa-cross"></i>
+            </button>
+        </div>
+    </p-footer>
+</p-dialog>

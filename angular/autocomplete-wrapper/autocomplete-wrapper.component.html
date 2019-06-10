@@ -1,0 +1,17 @@
+<p-autoComplete
+        [(ngModel)]="selectedValue"
+        [attr.name]="formControlName"
+        [placeholder]="'Select a value'"
+        (completeMethod)="filterAutocomplete($event.query)"
+        (onDropdownClick)="handleDropdownClick($event)"
+        (onSelect)="getIdFromSelectedValue($event)"
+        field="{{field}}"
+        [size]="30"
+        [minLength]="1"
+        [dropdown]="true"
+        [autoHighlight]="true"
+        [delay]="0"
+        (onClear)="checkClear()"
+        (onUnselect)="checkUnselect()"
+        [suggestions]="filteredSuggestions">
+</p-autoComplete>

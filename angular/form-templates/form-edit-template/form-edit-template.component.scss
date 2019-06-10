@@ -1,0 +1,72 @@
+.hide {
+  display: none;
+}
+
+.form-input {
+  width: 70% !important;
+}
+
+:host /deep/ .ui-dropdown,
+:host /deep/ .ui-autocomplete,
+:host /deep/ .ui-multiselect {
+  width: 100% !important;
+}
+
+.ui-grid-row {
+  padding-bottom: 5px;
+}
+
+.dialog-label {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.alert-danger {
+  width: 100%;
+  margin: 0;
+  padding: 4px;
+}
+
+:host /deep/ .ui-autocomplete,
+:host /deep/ .ui-multiselect {
+  height: 24px !important;
+  input {
+    width: calc(100% - 26px) !important; //24px is the width of the dropdown button
+    height: 24px !important;
+  }
+}
+
+:host /deep/ .ui-multiselect {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+:host /deep/ .ui-multiselect-panel {
+  width: 100%;
+}
+
+:host /deep/ .ui-multiselect .ui-multiselect-trigger {
+  background-color: #2599e6;
+  width: 26px;
+  display: flex;
+  justify-content: center;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+:host /deep/ .ui-multiselect .ui-multiselect-trigger .fa {
+  color: white;
+  margin-left: 0;
+}
+
+:host /deep/ .ui-multiselect-panel .ui-multiselect-items-wrapper {
+  height: 200px;
+}
+
+:host /deep/ .ui-multiselect-header > .ui-chkbox {
+  display: none;
+}
+
+:host /deep/ .ui-multiselect .ui-multiselect-label {
+  color: black;
+}

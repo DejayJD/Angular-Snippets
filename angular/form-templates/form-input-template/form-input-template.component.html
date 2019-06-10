@@ -1,0 +1,61 @@
+<ng-container *ngIf="formGroup != null">
+    <form [formGroup]="formGroup">
+        <ng-container [ngSwitch]="htmlInputType">
+            <input *ngSwitchCase="'text'" type="text" class="form-input" name="{{formControlName}}"
+                   [attr.disabled]="disabled"
+                   formControlName="{{formControlName}}"/>
+            <input *ngSwitchCase="'number'" type="number" class="form-input" name="{{formControlName}}"
+                   [attr.disabled]="disabled"
+                   formControlName="{{formControlName}}"/>
+            <input *ngSwitchCase="'version'" type="number" step="0.01" class="form-input"
+                   name="{{formControlName}}"
+                   [attr.disabled]="disabled"
+                   formControlName="{{formControlName}}"/>
+            <input *ngSwitchCase="'checkbox'" type="checkbox" class="form-input"
+                   name="{{formControlName}}"
+                   [attr.disabled]="disabled"
+                   formControlName="{{formControlName}}"/>
+            <textarea *ngSwitchCase="'textarea'" class="form-input" name="{{formControlName}}"
+                      [attr.disabled]="disabled"
+                      formControlName="{{formControlName}}">
+            </textarea>
+            <p-calendar
+                    *ngSwitchCase="'date'"
+                    [monthNavigator]="true"
+                    [yearNavigator]="true"
+                    yearRange="2000:2030"
+                    formControlName="{{formControlName}}"
+            >
+            </p-calendar>
+            <p-dropdown
+                    [placeholder]="'Select a value'" *ngSwitchCase="'dropdown'" class="form-input"
+                    [attr.name]="formControlName"
+                    [attr.disabled]="disabled"
+                    formControlName="{{formControlName}}"
+                    [options]="values">
+            </p-dropdown>
+            <app-autocomplete-wrapper
+                    *ngSwitchCase="'autocomplete'"
+                    class="form-input"
+                    [suggestions]="values"
+                    [field]="field"
+                    [formControlName]="formControlName"
+                    [foreignKey]="foreignKey"
+                    [formValueKey]="formControlName"
+                    [attr.disabled]="disabled"
+                    [editForm]="formGroup"
+                    [tupleValues]="tupleAutocompleteValues" ngDefaultControl>
+            </app-autocomplete-wrapper>
+            <p-multiSelect
+                    *ngSwitchCase="'multiselect'"
+                    class="form-input"
+                    [attr.name]="formControlName"
+                    [attr.disabled]="disabled"
+                    [options]="values"
+                    formControlName="{{formControlName}}"
+            >
+
+            </p-multiSelect>
+        </ng-container>
+    </form>
+</ng-container>

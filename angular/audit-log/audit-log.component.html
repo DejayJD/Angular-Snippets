@@ -1,0 +1,45 @@
+<div class="filter-bar" style="justify-content: flex-start">
+  <input class="ui-template-input global-filter" size="50" pInputText type="text" style="padding-bottom: 2px;"
+         placeholder="Start typing to filter..." #gbFilter>
+</div>
+
+<p-dataTable
+  tableStyleClass="source-sans-pro data-table"
+  selectionMode="single"
+  [value]="auditLog"
+  [globalFilter]="gbFilter"
+  [(selection)]="selectedEntry"
+  [paginator]="true"
+  [rows]="15"
+  [responsive]="true">
+  <!--LOOP THROUGH SPECIFIED COLUMNS -->
+  <ng-container *ngFor="let col of columns">
+    <p-column field="{{col.rowDisplayKey != null ? col.rowDisplayKey : col.formControlName}}"
+              header="{{col.displayHeader}}"
+              [style]="col.styles"
+              [sortable]="true">
+      <ng-template *ngIf="col.formControlName=='NewValue'"
+                   let-col let-data="rowData" let-ri="rowIndex" pTemplate="body">
+        <table *ngIf="data.NewValue && data.NewValue != 'none'">
+          <tr *ngFor="let row of data.NewValue">
+            <ng-container *ngIf="row != null">
+              <td><i>{{row.key}}</i></td>
+              <td [style.color] = "row.val == 'No value' ? '#b5b5b5' : 'inherit'">{{row.val}}</td>
+            </ng-container>
+          </tr>
+        </table>
+      </ng-template>
+      <ng-template *ngIf="col.formControlName=='PreviousValue'"
+                   let-col let-data="rowData" let-ri="rowIndex" pTemplate="body">
+        <table *ngIf="data.PreviousValue && data.PreviousValue != 'none'">
+          <tr *ngFor="let row of data.PreviousValue">
+            <ng-container *ngIf="row != null">
+              <td><i>{{row.key}}</i></td>
+              <td [style.color] = "row.val == 'No value' ? '#b5b5b5' : 'inherit'">{{row.val}}</td>
+            </ng-container>
+          </tr>
+        </table>
+      </ng-template>
+    </p-column>
+  </ng-container>
+</p-dataTable>

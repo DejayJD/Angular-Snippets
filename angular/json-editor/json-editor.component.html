@@ -1,0 +1,76 @@
+
+<!--The little pop up menu with options-->
+<p-contextMenu
+  appendTo="body"
+  [model]="contextMenuItems"
+  #cm
+>
+</p-contextMenu>
+
+<ul style="list-style:none" #liststart>
+  <!--This is a recursive template, so anything modified in here will affect all values displaying in the JSON tree -->
+  <ng-template #recursiveList let-list>
+    <li *ngFor="let item of list " style="list-style:none">
+      <span class="background-hover" *ngIf="!hiddenKeyIncludes(item.key)"> <!-- Dont show values from the hidden key array -->
+        <ng-container *ngIf="item.children">  <!-- Only show folding toggle if its an array/object -->
+          <app-icon-button
+            [iconOnly]="true"
+            [buttonColor]="'black'"
+            [faIcon]="item.collapsed ? 'fa-caret-right' : 'fa-caret-down'"
+            [size]="'small'"
+            (click)="toggleShowingChildren(item)"
+            *ngIf="item.children.length > 0"
+          >
+          </app-icon-button>
+        </ng-container>
+
+        <!--Key -->
+        <span *ngIf="item.key != null">
+          <app-clickable-input
+            [(value)]="item.key"
+            (valueChange)="seeValueChange(item)"
+            [editableView]="item.edit"
+            [editable]="editable"
+          >
+          </app-clickable-input>
+          :
+        </span>
+        <!--Value -->
+        <app-clickable-input
+          *ngIf="item.value != null"
+          [(value)]="item.value"
+          [editableView]="item.edit"
+          [editable]="editable"
+        >
+        </app-clickable-input>
+        <!--Add respective brackets to the UI-->
+        <ng-container *ngIf="item.children">
+          <span *ngIf="item.array">[</span>
+          <span *ngIf="!item.array">{{'{'}}</span>
+        </ng-container>
+        <!--Ellipsis that shows the tiny menu-->
+        <i class="onhover-show ellipsis-button fa fa-ellipsis-h"
+           *ngIf="!item.collapsed && editable"
+           (click)="showContextMenu($event, cm, item)">
+
+        </i>
+        <!-- This is just a small display box that extends past the value making it easier to click on -->
+        <span style="width:20px; display:inline-block; height:auto;" *ngIf="!item.collapsed"></span>
+
+        <!--Recurse through the children (for arrays/objects) -->
+        <ng-container *ngIf="item.children">
+          <span *ngIf="item.collapsed" (click)="toggleShowingChildren(item)" style="cursor:pointer">...</span>
+          <!--Recursively add templates objects for each child (for arrays/objects) -->
+          <ul *ngIf="item.children.length > 0 && !item.collapsed" style="list-style:none">
+            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+          </ul>
+
+          <!--Add Closing brackets to the UI-->
+          <span *ngIf="item.array">]</span>
+          <span *ngIf="!item.array">{{'}'}}</span>
+        </ng-container>
+    </span>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: jsonData }"></ng-container>
+</ul>

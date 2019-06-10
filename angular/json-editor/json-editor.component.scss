@@ -1,0 +1,19 @@
+.background-hover {
+  &:hover {
+    background-color: rgba(201, 244, 255, 0.6);
+  }
+}
+.onhover-show {
+  display:none;
+}
+.background-hover:hover > .onhover-show {
+  display: inline-block;
+}
+
+ul {
+  font-size:11pt;
+}
+
+.ellipsis-button {
+  cursor:pointer;
+}

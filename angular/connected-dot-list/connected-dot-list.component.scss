@@ -1,0 +1,125 @@
+@import '../../styles/ui-template-colors';
+
+.green-bg {
+  background: #3dc77e;
+  color: white !important;
+}
+
+.green-border {
+  border-color: #3dc77e;
+}
+
+.red-bg {
+  background: $red;
+  color: white !important;
+}
+
+.red-border {
+  border-color: $red;
+}
+
+.blue-bg {
+  background: $light-blue;
+  color: white !important;
+}
+
+.blue-border {
+  border-color: $light-blue;
+}
+
+.yellow-bg {
+  background: $yellow;
+  color: white !important;
+}
+
+.yellow-border {
+  border-color: $yellow;
+}
+
+.list-ic .list-bubble {
+  color: #788288;
+  text-decoration: none;
+}
+
+.list-ic li {
+  position: relative;
+}
+
+.list-ic li .list-bubble {
+  display: inline-block;
+  font-weight: 800;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  color: white;
+  position: relative;
+}
+
+.list-ic.vertical {
+  padding: 0;
+  margin: 0;
+}
+
+.list-ic.vertical li {
+  list-style-type: none;
+  text-align: left;
+}
+
+.list-ic.vertical li .list-bubble {
+  margin: 0.4em 0;
+}
+
+li:not(:last-child) .list-bubble::after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 20px;
+  left: 11px;
+  width: 3px;
+  height: 1.6em;
+}
+
+.list-horizontal ~ .list-bubble::after {
+  display: none;
+}
+
+.horizontal-line-before {
+  position: absolute;
+  z-index: -1;
+  top: 8px;
+  left: 0px;
+  width: 1.6em;
+  height: 3px;
+}
+
+.list-horizontal {
+  margin-left: 11px;
+  padding-left: 22px;
+  border-left-width: 3px;
+  border-left-style: solid;
+  position: relative;
+}
+
+.dynamic-line .list-bubble {
+  margin-bottom: 0 !important;
+}
+
+.dynamic-line + li {
+  &::after {
+    display: none;
+  }
+  .list-bubble {
+    margin-top: 0px !important;
+  }
+}
+
+.code-detail {
+  font-family: "Andale Mono", "Courier", sans-serif;
+  border: 1px solid #dadada;
+  white-space: pre-wrap;
+  overflow: auto;
+  background: #f3f3f3;
+}

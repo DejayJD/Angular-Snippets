@@ -1,0 +1,18 @@
+<div class="sidebar-nav" *ngIf="sideBarNavigationItems != null">
+    <ng-container *ngFor="let navList of sideBarNavigationItems">
+        <ul class="opened-nav-ul">
+            <h3 class="sidebar-nav-header" *ngIf="navList.header != null"> {{navList.header}} </h3>
+            <ng-container *ngFor="let navItem of navList.items">
+                <li class="sidebar-nav-item" [class.disabled]="navItem.disabled"
+                    [class.selected-nav-item]="navItem.selected"
+                    (click)="navigateOpenedItem(navItem)"
+                    *ngIf="!navItem.hidden">
+                    <img class="sidebar-nav-item-icon" src="/assets/icons/{{navItem.icon}}"/>
+                    {{navItem.label}}
+                </li>
+            </ng-container>
+        </ul>
+    </ng-container>
+    <!-- Space for Injected Content -->
+    <ng-content select="[openedItemNavBar]"></ng-content>
+</div>

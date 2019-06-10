@@ -1,0 +1,10 @@
+<div class="d-flex flex-wrap">
+    <ng-container *ngFor="let key of headers">
+        <div class="half-row" *ngIf="!key.hide">
+            <div class="col cell">
+                <label>{{key}}</label>
+                <div>{{rowData['key'] | defaultNone}}</div>
+            </div>
+        </div>
+    </ng-container>
+</div>
