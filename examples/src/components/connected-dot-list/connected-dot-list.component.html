@@ -1,0 +1,27 @@
+<div [ngClass]="contentDirection">
+  <ul class="list-ic" [ngClass]="contentDirection" style="padding-left:15px;">
+    <ng-container *ngFor="let item of listData; let i = index">
+      <li [ngClass]="[item.detail!=null?'dynamic-line':'', item.color]"
+          [ngStyle]="contentDirection == 'horizontal' ? {'min-width':minBarSize} :
+                   (contentDirection == 'vertical' ? {'min-height':minBarSize} : '')">
+            <span
+              [ngClass]="item.color != null ? item.color +'-bg' : 'blue-bg'"
+              class="list-bubble">
+                {{i + 1}}
+            </span>
+        <span class="list-text">{{item.text}}</span>
+        <div
+          [ngClass]="item.color != null ? item.color +'-border' : 'blue-border'"
+          class='list-horizontal' *ngIf="item.detail && contentDirection != 'horizontal'">
+          <span [ngClass]="item.color != null ? item.color +'-bg' : 'blue-bg'" class="horizontal-line-before"></span>
+          <div>
+            <strong>{{item.detail.header}}</strong>
+          </div>
+          <div style="padding-left:5px;" [ngClass]="{'code-detail':item.detail.code}" [innerHTML]="item.detail.text">
+            <!--Use innerHTML to preserve line breaks-->
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>
