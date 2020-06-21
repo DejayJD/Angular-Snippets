@@ -34,4 +34,4 @@ render() {
 
 So I built a templating engine and an editor that takes advantage of this.
 
-Check it out here
+Check it out [here](https://dejayjd.github.io/Code-Snippets#cmseditor)
